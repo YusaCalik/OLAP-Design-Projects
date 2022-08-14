@@ -1,0 +1,2508 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/13/2022 12:44:30 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-4OE7NLK"
+  DTS:CreatorName="DESKTOP-4OE7NLK\Yuşa Çalık"
+  DTS:DTSID="{38EED79C-A40E-4F04-9CAA-BE74984AE07D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FactOrder"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{F2543F4E-1A0F-4ADF-9064-492B465D0757}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.project]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AFDAA816-7A6E-4E8E-9D2F-0CD1DDF77C71}"
+      DTS:ObjectName="LocalHost.project">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=project;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{0486F442-76E0-4833-BBB5-AF11D1E516F3}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageName">
+      <DTS:VariableValue
+        DTS:DataType="8">FactOrder.dtsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C2392D05-7D0F-49C3-A32D-09A7E8279489}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">FactOrder</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\ExecutionLog"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E7801905-FC81-47F2-B194-1CFD0189E915}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ExecutionLog"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFDAA816-7A6E-4E8E-9D2F-0CD1DDF77C71}"
+          SQLTask:SqlStatementSource="update SSISExecutionLog&#xA;set LastExecutionDateTime=getdate()&#xA;where TableName=? and PackageName=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\FactOrder"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{61E63456-AB8E-44EE-8C97-5469B120CF29}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FactOrder"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FactOrder\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[OrderID]"
+                      cachedDataType="i4"
+                      cachedName="OrderID"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="OrderDate"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[DueDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DueDate"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[DueDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="CustomerID"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[ProductID]"
+                      cachedDataType="i2"
+                      cachedName="ProductID"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[RegionID]"
+                      cachedDataType="i2"
+                      cachedName="RegionID"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[RegionID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[CargoID]"
+                      cachedDataType="i2"
+                      cachedName="CargoID"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CargoID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[WarehouseID]"
+                      cachedDataType="ui1"
+                      cachedName="WarehouseID"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[WarehouseID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ModifiedDate"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input].Columns[STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STGInsertDate"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderID]"
+                      name="DC_OrderID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderDate]"
+                      name="DC_OrderDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_DueDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_DueDate]"
+                      name="DC_DueDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[DueDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]"
+                      name="DC_CustomerID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CustomerID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]"
+                      name="DC_ProductID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]"
+                      name="DC_RegionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[RegionID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]"
+                      name="DC_CargoID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CargoID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_WarehouseID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_WarehouseID]"
+                      name="DC_WarehouseID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[WarehouseID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ModifiedDate]"
+                      name="DC_ModifiedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ModifiedDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      name="DC_STGInsertDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[STGInsertDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\DimCargo Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimCargo Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DC_CargoID,DWID from DimandDumpCargo</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DC_CargoID,DWID from DimandDumpCargo) [refTable]
+where [refTable].[DC_CargoID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DC_CargoID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\DimCargo Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\DimCargo Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\DimCargo Lookup.Inputs[Lookup Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CargoID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactOrder\DimCargo Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactOrder\DimCargo Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactOrder\DimCargo Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\DimCustomer Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimCustomer Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DC_CustomerID,DWID from DimDumpCustomer</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DC_CustomerID,DWID from DimDumpCustomer) [refTable]
+where [refTable].[DC_CustomerID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DC_CustomerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\DimCustomer Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\DimCustomer Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\DimCustomer Lookup.Inputs[Lookup Input].Columns[DC_CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CustomerID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CustomerID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactOrder\DimCustomer Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactOrder\DimCustomer Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactOrder\DimCustomer Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\DimProduct Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimProduct Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DC_ProductID,DWID from DimDumpProduct</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DC_ProductID,DWID from DimDumpProduct) [refTable]
+where [refTable].[DC_ProductID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DC_ProductID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\DimProduct Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\DimProduct Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\DimProduct Lookup.Inputs[Lookup Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactOrder\DimProduct Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactOrder\DimProduct Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactOrder\DimProduct Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\DimRegion Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimRegion Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DC_RegionID,DWID from DimDumpRegion</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DC_RegionID,DWID from DimDumpRegion) [refTable]
+where [refTable].[DC_RegionID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DC_RegionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\DimRegion Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\DimRegion Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\DimRegion Lookup.Inputs[Lookup Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_RegionID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactOrder\DimRegion Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactOrder\DimRegion Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactOrder\DimRegion Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\Dump FactOrder"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Dump FactOrder"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DumpFactOrder]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\Dump FactOrder.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_OrderID]"
+                      cachedDataType="i4"
+                      cachedName="DC_OrderID"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_OrderDate"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_DueDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_DueDate"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_DueDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_DueDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CustomerID"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CustomerID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_WarehouseID]"
+                      cachedDataType="i4"
+                      cachedName="DC_WarehouseID"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_WarehouseID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_WarehouseID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_ModifiedDate"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ModifiedDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderID]"
+                      dataType="i4"
+                      name="DC_OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_DueDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_DueDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CustomerID]"
+                      dataType="i4"
+                      name="DC_CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      dataType="i4"
+                      name="DC_ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      dataType="i4"
+                      name="DC_RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      dataType="i4"
+                      name="DC_CargoID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_WarehouseID]"
+                      dataType="i4"
+                      name="DC_WarehouseID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\Dump FactOrder.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Dump FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\Dump FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Dump FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\FactOrder"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="FactOrder"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactOrder]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\FactOrder.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_OrderID]"
+                      cachedDataType="i4"
+                      cachedName="DC_OrderID"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_OrderDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_OrderDate"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_DueDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_DueDate"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_DueDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_DueDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CustomerID"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CustomerID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_WarehouseID]"
+                      cachedDataType="i4"
+                      cachedName="DC_WarehouseID"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_WarehouseID]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_WarehouseID]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_ModifiedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_ModifiedDate"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ModifiedDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ModifiedDate]" />
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderID]"
+                      dataType="i4"
+                      name="DC_OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_DueDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_DueDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CustomerID]"
+                      dataType="i4"
+                      name="DC_CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      dataType="i4"
+                      name="DC_ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      dataType="i4"
+                      name="DC_RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      dataType="i4"
+                      name="DC_CargoID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_WarehouseID]"
+                      dataType="i4"
+                      name="DC_WarehouseID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\FactOrder.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\FactOrder.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\FactOrder Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="FactOrder Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DWID,DC_OrderID,DC_CustomerID,DC_ProductID,DC_RegionID,DC_CargoID from FactOrder</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DWID,DC_OrderID,DC_CustomerID,DC_ProductID,DC_RegionID,DC_CargoID from FactOrder) [refTable]
+where [refTable].[DC_OrderID] = ? and [refTable].[DC_CustomerID] = ? and [refTable].[DC_ProductID] = ? and [refTable].[DC_RegionID] = ? and [refTable].[DC_CargoID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_OrderID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_CustomerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_ProductID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_RegionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_CargoID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderID]};#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]};#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]};#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]};#{Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\FactOrder Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input].Columns[DC_OrderID]"
+                      cachedDataType="i4"
+                      cachedName="DC_OrderID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_OrderID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_OrderID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input].Columns[DC_CustomerID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CustomerID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CustomerID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CustomerID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_RegionID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      lineageId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CargoID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FactOrder\Order"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Order"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stgOrder]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FactOrder\Order.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FactOrder\Order.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[OrderID]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderID]"
+                      name="OrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                      name="OrderDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[DueDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[DueDate]"
+                      name="DueDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                      name="CustomerID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[RegionID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[RegionID]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[RegionID]"
+                      name="RegionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CargoID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[CargoID]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[CargoID]"
+                      name="CargoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[WarehouseID]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[WarehouseID]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[WarehouseID]"
+                      name="WarehouseID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      name="STGInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[OrderID]"
+                      dataType="i4"
+                      name="OrderID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      name="OrderDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
+                      dataType="dbTimeStamp"
+                      name="DueDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                      dataType="i4"
+                      name="CustomerID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i2"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[RegionID]"
+                      dataType="i2"
+                      name="RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[CargoID]"
+                      dataType="i2"
+                      name="CargoID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[WarehouseID]"
+                      dataType="ui1"
+                      name="WarehouseID" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="STGInsertDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[OrderID]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[OrderID]"
+                      name="OrderID" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                      name="OrderDate" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[DueDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[DueDate]"
+                      name="DueDate" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                      name="CustomerID" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i2"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[RegionID]"
+                      dataType="i2"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[RegionID]"
+                      name="RegionID" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[CargoID]"
+                      dataType="i2"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[CargoID]"
+                      name="CargoID" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[WarehouseID]"
+                      dataType="ui1"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[WarehouseID]"
+                      name="WarehouseID" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ModifiedDate]"
+                      name="ModifiedDate" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      name="STGInsertDate" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FactOrder\Order.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FactOrder.Paths[Data Conversion Output]"
+              endId="Package\FactOrder\DimProduct Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\FactOrder\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\FactOrder.Paths[Lookup Match Output]"
+              endId="Package\FactOrder\DimRegion Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactOrder\DimProduct Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactOrder.Paths[Lookup Match Output1]"
+              endId="Package\FactOrder\DimCargo Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactOrder\DimRegion Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactOrder.Paths[Lookup Match Output2]"
+              endId="Package\FactOrder\DimCustomer Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactOrder\DimCargo Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactOrder.Paths[Lookup Match Output3]"
+              endId="Package\FactOrder\FactOrder Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\FactOrder\DimCustomer Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactOrder.Paths[Lookup Match Output4]"
+              endId="Package\FactOrder\Dump FactOrder.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\FactOrder.Paths[Lookup No Match Output]"
+              endId="Package\FactOrder\FactOrder.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\FactOrder\FactOrder Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\FactOrder.Paths[OLE DB Source Output]"
+              endId="Package\FactOrder\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\FactOrder\Order.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{55D4AAE9-023A-412A-846B-026685CFC2EC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AFDAA816-7A6E-4E8E-9D2F-0CD1DDF77C71}"
+          SQLTask:SqlStatementSource="UPDATE dim&#xA;SET dim.[DC_OrderDate]=dump.[DC_OrderDate],&#xA;dim.[DC_DueDate]=dump.[DC_DueDate],&#xA;dim.DWUpdateDate=getdate()&#xA;FROM [dbo].[FactOrder] dim&#xA;JOIN [dbo].[DumpFactOrder] dump ON dim.DWID=dump.DWID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6B4C07BC-8198-487C-8B53-A4899D9C1F4C}"
+      DTS:From="Package\FactOrder"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B811F782-8DD6-4206-A210-3FCDA2B82AC2}"
+      DTS:From="Package\Update"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ExecutionLog" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="125,42"
+          Id="Package\FactOrder"
+          TopLeft="352,130" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Update"
+          TopLeft="352,234" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\ExecutionLog"
+          TopLeft="341,340" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="411.5,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="410,276">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FactOrder">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="106,42"
+          Id="Package\FactOrder\Order"
+          TopLeft="250,0" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\FactOrder\Data Conversion"
+          TopLeft="225,74" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\FactOrder\DimProduct Lookup"
+          TopLeft="221,144" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\FactOrder\DimRegion Lookup"
+          TopLeft="226,235" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\FactOrder\DimCargo Lookup"
+          TopLeft="230,315" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\FactOrder\DimCustomer Lookup"
+          TopLeft="219,389" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\FactOrder\FactOrder Lookup"
+          TopLeft="226,470" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\FactOrder\FactOrder"
+          TopLeft="3,560" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\FactOrder\Dump FactOrder"
+          TopLeft="525,565" />
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[OLE DB Source Output]"
+          TopLeft="303,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Data Conversion Output]"
+          TopLeft="304.75,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Lookup Match Output]"
+          TopLeft="308,186">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,14.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Lookup Match Output1]"
+          TopLeft="310.5,277">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,9.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Lookup Match Output2]"
+          TopLeft="310.25,357">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32"
+              Start="0,0"
+              End="0,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,6.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Lookup Match Output3]"
+          TopLeft="308.25,431">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,9.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Lookup No Match Output]"
+          TopLeft="281.666666666667,512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-216.166666666667,48"
+              Start="0,0"
+              End="-216.166666666667,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.4799513973269" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.4799513973269"
+                    Point2="0,19.4799513973269"
+                    Point3="-4,19.4799513973269" />
+                  <mssgle:LineSegment
+                    End="-212.166666666667,19.4799513973269" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-212.166666666667,19.4799513973269"
+                    Point2="-216.166666666667,19.4799513973269"
+                    Point3="-216.166666666667,23.4799513973269" />
+                  <mssgle:LineSegment
+                    End="-216.166666666667,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-163.889720052083,24.4799513973269,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FactOrder.Paths[Lookup Match Output4]"
+          TopLeft="333.333333333333,512">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="270.166666666667,53"
+              Start="0,0"
+              End="270.166666666667,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5091130012151" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5091130012151"
+                    Point2="0,21.5091130012151"
+                    Point3="4,21.5091130012151" />
+                  <mssgle:LineSegment
+                    End="266.166666666667,21.5091130012151" />
+                  <mssgle:CubicBezierSegment
+                    Point1="266.166666666667,21.5091130012151"
+                    Point2="270.166666666667,21.5091130012151"
+                    Point3="270.166666666667,25.5091130012151" />
+                  <mssgle:LineSegment
+                    End="270.166666666667,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="86.8919466145833,26.5091130012151,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\Order">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\DimProduct Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\DimRegion Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\DimCargo Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\DimCustomer Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\FactOrder Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\FactOrder">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FactOrder\Dump FactOrder">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

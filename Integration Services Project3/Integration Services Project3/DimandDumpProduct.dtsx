@@ -1,0 +1,1589 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/12/2022 1:14:57 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-4OE7NLK"
+  DTS:CreatorName="DESKTOP-4OE7NLK\Yuşa Çalık"
+  DTS:DTSID="{1F504321-F96B-483E-9DF3-0AF6D9794510}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DimandDumpProduct"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{19F13D94-A8C8-4A2D-8165-48CBAC0A4559}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.project]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BCDD3107-5330-4666-B6AD-8E745810A32E}"
+      DTS:ObjectName="LocalHost.project">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=project;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3F111261-1816-493C-9DE9-541CDC3A1A05}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Packagename">
+      <DTS:VariableValue
+        DTS:DataType="8">DimandDumpProduct.dtsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{81226ED2-EE0D-4AC5-A294-550BB376DA8E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">DimProduct</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimandDumpProduct"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C8EF5D5F-1F6B-49AA-99CC-690266C15F21}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimandDumpProduct"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimandDumpProduct\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input].Columns[ProductID]"
+                      cachedDataType="i2"
+                      cachedName="ProductID"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input].Columns[ProductCode]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="ProductCode"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductCode]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input].Columns[CategoryID]"
+                      cachedDataType="ui1"
+                      cachedName="CategoryID"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[CategoryID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input].Columns[Cost]"
+                      cachedDataType="cy"
+                      cachedName="Cost"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Cost]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input].Columns[STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STGInsertDate"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]"
+                      name="DC_ProductID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="60"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]"
+                      name="DC_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="6"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductCode]"
+                      name="DC_ProductCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductCode]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]"
+                      name="DC_CategoryID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[CategoryID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Cost]"
+                      dataType="decimal"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Cost]"
+                      name="DC_Cost"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Cost]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      name="DC_STGInsertDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[STGInsertDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpProduct\DimCategory Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="DimCategory Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DWID,DC_CategoryID from DimDumpCategory</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DWID,DC_CategoryID from DimDumpCategory) [refTable]
+where [refTable].[DC_CategoryID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_CategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpProduct\DimCategory Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpProduct\DimCategory Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimCategory Lookup.Inputs[Lookup Input].Columns[DC_CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CategoryID"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CategoryID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DimandDumpProduct\DimCategory Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DimandDumpProduct\DimCategory Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DimandDumpProduct\DimCategory Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpProduct\DimProduct Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DimProduct Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpProduct\DimProduct Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="DC_Name"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_ProductCode]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="DC_ProductCode"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductCode]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductCode]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CategoryID"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CategoryID]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_Cost]"
+                      cachedDataType="decimal"
+                      cachedName="DC_Cost"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Cost]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Cost]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      dataType="i4"
+                      name="DC_ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      dataType="wstr"
+                      length="60"
+                      name="DC_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="DC_ProductCode" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CategoryID]"
+                      dataType="i4"
+                      name="DC_CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Cost]"
+                      dataType="numeric"
+                      name="DC_Cost"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpProduct\DimProduct Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\DimProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DimProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\DimProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpProduct\DumpProduct Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DumpProduct Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDumpProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpProduct\DumpProduct Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="60"
+                      cachedName="DC_Name"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_ProductCode]"
+                      cachedDataType="wstr"
+                      cachedLength="6"
+                      cachedName="DC_ProductCode"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductCode]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductCode]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CategoryID"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CategoryID]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_Cost]"
+                      cachedDataType="decimal"
+                      cachedName="DC_Cost"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Cost]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Cost]" />
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductID]"
+                      dataType="i4"
+                      name="DC_ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      dataType="wstr"
+                      length="60"
+                      name="DC_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_ProductCode]"
+                      dataType="wstr"
+                      length="6"
+                      name="DC_ProductCode" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CategoryID]"
+                      dataType="i4"
+                      name="DC_CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Cost]"
+                      dataType="numeric"
+                      name="DC_Cost"
+                      precision="28"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpProduct\DumpProduct Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\DumpProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\DumpProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\DumpProduct Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpProduct\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DWID,DC_ProductID,DC_CategoryID from dbo.[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DWID,DC_ProductID,DC_CategoryID from dbo.[DimProduct]) [refTable]
+where [refTable].[DC_ProductID] = ? and [refTable].[DC_CategoryID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_ProductID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_CategoryID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]};#{Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpProduct\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input].Columns[DC_ProductID]"
+                      cachedDataType="i4"
+                      cachedName="DC_ProductID"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_ProductID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_ProductID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input].Columns[DC_CategoryID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CategoryID"
+                      lineageId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CategoryID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CategoryID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpProduct\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpProduct\Product"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Product"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [stgProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpProduct\Product.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductCode]"
+                      length="10"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[ProductCode]"
+                      name="ProductCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[CategoryID]"
+                      name="CategoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Cost]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[Cost]"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[Cost]"
+                      name="Cost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      name="STGInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i2"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[ProductCode]"
+                      dataType="wstr"
+                      length="10"
+                      name="ProductCode" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[CategoryID]"
+                      dataType="ui1"
+                      name="CategoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[Cost]"
+                      dataType="cy"
+                      name="Cost" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="STGInsertDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i2"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ProductCode]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ProductCode]"
+                      name="ProductCode" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      dataType="ui1"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[CategoryID]"
+                      name="CategoryID" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[Cost]"
+                      dataType="cy"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[Cost]"
+                      name="Cost" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      name="STGInsertDate" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimandDumpProduct.Paths[Data Conversion Output]"
+              endId="Package\DimandDumpProduct\DimCategory Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DimandDumpProduct\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DimandDumpProduct.Paths[Lookup Match Output]"
+              endId="Package\DimandDumpProduct\DumpProduct Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DimandDumpProduct\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DimandDumpProduct.Paths[Lookup Match Output1]"
+              endId="Package\DimandDumpProduct\Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DimandDumpProduct\DimCategory Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DimandDumpProduct.Paths[Lookup No Match Output]"
+              endId="Package\DimandDumpProduct\DimProduct Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DimandDumpProduct\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DimandDumpProduct.Paths[OLE DB Source Output]"
+              endId="Package\DimandDumpProduct\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DimandDumpProduct\Product.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ExecutionLogSet"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{73408F2B-FB1B-4C49-914C-D0B4AC470E0D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ExecutionLogSet"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BCDD3107-5330-4666-B6AD-8E745810A32E}"
+          SQLTask:SqlStatementSource="update SSISExecutionLog&#xA;set LastExecutionDateTime=getdate()&#xA;where TableName=? and PackageName=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::Packagename"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1957AF39-B860-4F53-B6BF-F5B3A32A531B}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BCDD3107-5330-4666-B6AD-8E745810A32E}"
+          SQLTask:SqlStatementSource="UPDATE dim&#xA;SET dim.[DC_Name]=dump.[DC_Name],&#xA;dim.[DC_ProductCode]=dump.[DC_ProductCode],&#xA;dim.[DC_CategoryID]=dump.[DC_CategoryID],&#xA;dim.[DC_Cost]=dump.[DC_Cost],&#xA;dim.DWUpdateDate=getdate()&#xA;FROM [dbo].[DimProduct] dim&#xA;JOIN [dbo].[DimDumpProduct] dump ON dim.DWID=dump.DWID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{83EF30CD-A82B-40E5-BCFE-4F4E5601A40A}"
+      DTS:From="Package\DimandDumpProduct"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9F059975-EBBF-4740-9EDA-0C7F16B9D304}"
+      DTS:From="Package\Update"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ExecutionLogSet" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\DimandDumpProduct"
+          TopLeft="192,93" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\ExecutionLogSet"
+          TopLeft="204,341" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Update"
+          TopLeft="228,227" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="283,135">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92"
+              Start="0,0"
+              End="0,84.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="283.5,269">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,72"
+              Start="0,0"
+              End="0,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimandDumpProduct">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\DimandDumpProduct\DimCategory Lookup"
+          TopLeft="377,239" />
+        <NodeLayout
+          Size="115,42"
+          Id="Package\DimandDumpProduct\Product"
+          TopLeft="406,39" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\DimandDumpProduct\DimProduct Destination"
+          TopLeft="81,532" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\DimandDumpProduct\DumpProduct Destination"
+          TopLeft="775,529" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\DimandDumpProduct\Lookup"
+          TopLeft="409,339" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimandDumpProduct\Data Conversion"
+          TopLeft="387,137" />
+        <EdgeLayout
+          Id="Package\DimandDumpProduct.Paths[Lookup No Match Output]"
+          TopLeft="448,381">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-272,151"
+              Start="0,0"
+              End="-272,143.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.6649214659686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.6649214659686"
+                    Point2="0,61.6649214659686"
+                    Point3="-4,61.6649214659686" />
+                  <mssgle:LineSegment
+                    End="-268,61.6649214659686" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-268,61.6649214659686"
+                    Point2="-272,61.6649214659686"
+                    Point3="-272,65.6649214659686" />
+                  <mssgle:LineSegment
+                    End="-272,143.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-191.80638671875,66.6649214659686,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpProduct.Paths[Lookup Match Output1]"
+          TopLeft="465.5,281">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,19.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpProduct.Paths[Lookup Match Output]"
+          TopLeft="483,381">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="391.5,148"
+              Start="0,0"
+              End="391.5,140.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.4397905759162" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.4397905759162"
+                    Point2="0,60.4397905759162"
+                    Point3="4,60.4397905759162" />
+                  <mssgle:LineSegment
+                    End="387.5,60.4397905759162" />
+                  <mssgle:CubicBezierSegment
+                    Point1="387.5,60.4397905759162"
+                    Point2="391.5,60.4397905759162"
+                    Point3="391.5,64.4397905759162" />
+                  <mssgle:LineSegment
+                    End="391.5,140.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="147.55861328125,65.4397905759162,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpProduct.Paths[Data Conversion Output]"
+          TopLeft="465.25,179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpProduct.Paths[OLE DB Source Output]"
+          TopLeft="464.25,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpProduct\DimCategory Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpProduct\Product">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpProduct\DimProduct Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpProduct\DumpProduct Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpProduct\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

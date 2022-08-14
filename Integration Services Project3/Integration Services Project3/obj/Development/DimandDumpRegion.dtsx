@@ -1,0 +1,1310 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/12/2022 1:40:35 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-4OE7NLK"
+  DTS:CreatorName="DESKTOP-4OE7NLK\Yuşa Çalık"
+  DTS:DTSID="{0A5F9417-84FB-4778-93EF-3BE84E2A38D6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DimandDumpRegion"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{A4E64E7B-EF37-4499-B164-18E2EC0DCB3B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.project]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{198A5A0F-7E3C-436D-A3DC-B8DD365BFF29}"
+      DTS:ObjectName="LocalHost.project">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=project;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{784AAB1F-382C-410E-8D67-62C7F29D0D05}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Packagename">
+      <DTS:VariableValue
+        DTS:DataType="8">DimandDumpRegion.dtsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E8E74A24-E753-4C3C-AF25-E933AFAE9BFD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">DimRegion</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimDumpRegion"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2E78E30B-B2C0-4D55-BD7C-BDDB2BCAFA39}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimDumpRegion"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimDumpRegion\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input].Columns[RegionID]"
+                      cachedDataType="i2"
+                      cachedName="RegionID"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[RegionID]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input].Columns[Continent]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Continent"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Continent]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="Country"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Country]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="City"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[City]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input].Columns[STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STGInsertDate"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]"
+                      name="DC_RegionID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[RegionID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Continent]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Continent]"
+                      name="DC_Continent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Continent]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Country]"
+                      name="DC_Country"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Country]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="40"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_City]"
+                      name="DC_City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[City]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      name="DC_STGInsertDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[STGInsertDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimDumpRegion\DimRegionDestination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DimRegionDestination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimRegion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimDumpRegion\DimRegionDestination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      externalMetadataColumnId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].Columns[DC_Continent]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="DC_Continent"
+                      externalMetadataColumnId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Continent]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Continent]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].Columns[DC_Country]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="DC_Country"
+                      externalMetadataColumnId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Country]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Country]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].Columns[DC_City]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="DC_City"
+                      externalMetadataColumnId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_City]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_City]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      dataType="i4"
+                      name="DC_RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Continent]"
+                      dataType="wstr"
+                      length="20"
+                      name="DC_Continent" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Country]"
+                      dataType="wstr"
+                      length="40"
+                      name="DC_Country" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_City]"
+                      dataType="wstr"
+                      length="40"
+                      name="DC_City" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimDumpRegion\DimRegionDestination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\DimRegionDestination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\DimRegionDestination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\DimRegionDestination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimDumpRegion\DumpRegion Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DumpRegion Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimDumpRegion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimDumpRegion\DumpRegion Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      externalMetadataColumnId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].Columns[DC_Continent]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="DC_Continent"
+                      externalMetadataColumnId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Continent]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Continent]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].Columns[DC_Country]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="DC_Country"
+                      externalMetadataColumnId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Country]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Country]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].Columns[DC_City]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="DC_City"
+                      externalMetadataColumnId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_City]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_City]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                    <inputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].Columns[DWID]"
+                      cachedDataType="i4"
+                      cachedName="DWID"
+                      externalMetadataColumnId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      lineageId="Package\DimDumpRegion\Lookup.Outputs[Lookup Match Output].Columns[DWID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_RegionID]"
+                      dataType="i4"
+                      name="DC_RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Continent]"
+                      dataType="wstr"
+                      length="20"
+                      name="DC_Continent" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Country]"
+                      dataType="wstr"
+                      length="40"
+                      name="DC_Country" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_City]"
+                      dataType="wstr"
+                      length="40"
+                      name="DC_City" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimDumpRegion\DumpRegion Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\DumpRegion Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\DumpRegion Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\DumpRegion Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimDumpRegion\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DWID,[DC_RegionID] from dbo.[DimRegion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DWID,[DC_RegionID] from dbo.[DimRegion]) [refTable]
+where [refTable].[DC_RegionID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_RegionID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimDumpRegion\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimDumpRegion\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimDumpRegion\Lookup.Inputs[Lookup Input].Columns[DC_RegionID]"
+                      cachedDataType="i4"
+                      cachedName="DC_RegionID"
+                      lineageId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output].Columns[DC_RegionID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_RegionID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimDumpRegion\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DimDumpRegion\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DimDumpRegion\Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimDumpRegion\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DimDumpRegion\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimDumpRegion\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DimDumpRegion\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimDumpRegion\Region"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Region"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stgRegion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimDumpRegion\Region.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[RegionID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[RegionID]"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[RegionID]"
+                      name="RegionID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Continent]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[Continent]"
+                      length="20"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Continent]"
+                      name="Continent"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      length="40"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      length="40"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      name="STGInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[RegionID]"
+                      dataType="i2"
+                      name="RegionID" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[Continent]"
+                      dataType="wstr"
+                      length="20"
+                      name="Continent" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="40"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="40"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="STGInsertDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[RegionID]"
+                      dataType="i2"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[RegionID]"
+                      name="RegionID" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[Continent]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[Continent]"
+                      name="Continent" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[City]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      name="STGInsertDate" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimDumpRegion.Paths[Data Conversion Output]"
+              endId="Package\DimDumpRegion\Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DimDumpRegion\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DimDumpRegion.Paths[Lookup Match Output]"
+              endId="Package\DimDumpRegion\DumpRegion Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DimDumpRegion\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DimDumpRegion.Paths[Lookup No Match Output]"
+              endId="Package\DimDumpRegion\DimRegionDestination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DimDumpRegion\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DimDumpRegion.Paths[OLE DB Source Output]"
+              endId="Package\DimDumpRegion\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DimDumpRegion\Region.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ExecutionLog"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{64F1B73C-A728-4CC5-96B0-3BEBDC2C99FC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ExecutionLog"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{198A5A0F-7E3C-436D-A3DC-B8DD365BFF29}"
+          SQLTask:SqlStatementSource="update SSISExecutionLog&#xA;set LastExecutionDateTime=getdate()&#xA;where TableName=? and PackageName=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::Packagename"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CB3D67E8-D1C5-4D52-83FF-61A66B866EBF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{198A5A0F-7E3C-436D-A3DC-B8DD365BFF29}"
+          SQLTask:SqlStatementSource="UPDATE dim&#xA;SET dim.[DC_Continent]=dump.[DC_Continent],&#xA;dim.[DC_Country]=dump.[DC_Country],&#xA;dim.[DC_City]=dump.[DC_City],&#xA;dim.DWUpdateDate=getdate()&#xA;FROM [dbo].[DimRegion] dim&#xA;JOIN [dbo].[DimDumpRegion] dump ON dim.DWID=dump.DWID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8AD0919F-25B2-4F35-8FD0-131400098B1F}"
+      DTS:From="Package\DimDumpRegion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0C598A3-A23E-42FE-B4EC-0E59E665364E}"
+      DTS:From="Package\Update"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ExecutionLog" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="158,42"
+          Id="Package\DimDumpRegion"
+          TopLeft="301,56" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\ExecutionLog"
+          TopLeft="320,303" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Update"
+          TopLeft="329,176" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="382.75,98">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78"
+              Start="0,0"
+              End="0,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="388,218">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,85"
+              Start="0,0"
+              End="0,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimDumpRegion">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="111,42"
+          Id="Package\DimDumpRegion\Region"
+          TopLeft="332,24" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\DimDumpRegion\DimRegionDestination"
+          TopLeft="65,343" />
+        <NodeLayout
+          Size="196,42"
+          Id="Package\DimDumpRegion\DumpRegion Destination"
+          TopLeft="583,336" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\DimDumpRegion\Lookup"
+          TopLeft="335,232" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimDumpRegion\Data Conversion"
+          TopLeft="315,119" />
+        <EdgeLayout
+          Id="Package\DimDumpRegion.Paths[Lookup No Match Output]"
+          TopLeft="374,274">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-217.5,69"
+              Start="0,0"
+              End="-217.5,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.1780104712042" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.1780104712042"
+                    Point2="0,28.1780104712042"
+                    Point3="-4,28.1780104712042" />
+                  <mssgle:LineSegment
+                    End="-213.5,28.1780104712042" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-213.5,28.1780104712042"
+                    Point2="-217.5,28.1780104712042"
+                    Point3="-217.5,32.1780104712042" />
+                  <mssgle:LineSegment
+                    End="-217.5,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-164.55638671875,33.1780104712042,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimDumpRegion.Paths[Lookup Match Output]"
+          TopLeft="409,274">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="272,62"
+              Start="0,0"
+              End="272,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.3193717277487" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.3193717277487"
+                    Point2="0,25.3193717277487"
+                    Point3="4,25.3193717277487" />
+                  <mssgle:LineSegment
+                    End="268,25.3193717277487" />
+                  <mssgle:CubicBezierSegment
+                    Point1="268,25.3193717277487"
+                    Point2="272,25.3193717277487"
+                    Point3="272,29.3193717277487" />
+                  <mssgle:LineSegment
+                    End="272,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="87.80861328125,30.3193717277487,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimDumpRegion.Paths[Data Conversion Output]"
+          TopLeft="392.25,161">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimDumpRegion.Paths[OLE DB Source Output]"
+          TopLeft="390.25,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimDumpRegion\DumpRegion Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimDumpRegion\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimDumpRegion\Region">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimDumpRegion\DimRegionDestination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

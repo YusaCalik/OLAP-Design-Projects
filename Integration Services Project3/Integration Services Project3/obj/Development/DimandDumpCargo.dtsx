@@ -1,0 +1,1250 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/12/2022 1:53:39 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-4OE7NLK"
+  DTS:CreatorName="DESKTOP-4OE7NLK\Yuşa Çalık"
+  DTS:DTSID="{660FB010-9913-4A38-A988-C7FC5D37F92B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.166"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DimandDumpCargo"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{95FE4F67-BC07-4D2A-8949-A1113E522ACB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.project]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{839A0F61-53CD-4DA1-A9D1-4F6957352EAB}"
+      DTS:ObjectName="LocalHost.project">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=.;Initial Catalog=project;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{625A345D-FCFF-4179-89D3-34CF15E6332E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Packagename">
+      <DTS:VariableValue
+        DTS:DataType="8">DimandDumpCargo.dtsx</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{32B60EC6-794F-422A-9D3F-095F7E6E22B6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableName">
+      <DTS:VariableValue
+        DTS:DataType="8">DimCargo</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DimandDumpCargo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{42B0AFDF-BCE0-4819-92C6-DFA0C81F185D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DimandDumpCargo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DimandDumpCargo\Cargo"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Cargo"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stgCargo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpCargo\Cargo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[CargoID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[CargoID]"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[CargoID]"
+                      name="CargoID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      length="50"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[Name]"
+                      name="Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[TransportType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[TransportType]"
+                      length="10"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[TransportType]"
+                      name="TransportType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[STGInsertDate]"
+                      name="STGInsertDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[CargoID]"
+                      dataType="i2"
+                      name="CargoID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[TransportType]"
+                      dataType="wstr"
+                      length="10"
+                      name="TransportType" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].ExternalColumns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="STGInsertDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[CargoID]"
+                      dataType="i2"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[CargoID]"
+                      name="CargoID" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[Name]"
+                      name="Name" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[TransportType]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[TransportType]"
+                      name="TransportType" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[STGInsertDate]"
+                      name="STGInsertDate" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpCargo\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input].Columns[CargoID]"
+                      cachedDataType="i2"
+                      cachedName="CargoID"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[CargoID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input].Columns[Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Name"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[Name]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input].Columns[TransportType]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="TransportType"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[TransportType]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input].Columns[STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STGInsertDate"
+                      lineageId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]"
+                      name="DC_CargoID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[CargoID]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]"
+                      name="DC_Name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[Name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TransportType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TransportType]"
+                      name="DC_TransportType"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[TransportType]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]"
+                      name="DC_STGInsertDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output].Columns[STGInsertDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpCargo\DimCargo Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DimCargo Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimCargo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpCargo\DimCargo Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DC_Name"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_TransportType]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DC_TransportType"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_TransportType]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TransportType]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      dataType="i4"
+                      name="DC_CargoID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="DC_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_TransportType]"
+                      dataType="wstr"
+                      length="10"
+                      name="DC_TransportType" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpCargo\DimCargo Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\DimCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\DimCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\DimCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpCargo\DumpCargo Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DumpCargo Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimandDumpCargo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpCargo\DumpCargo Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_Name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="DC_Name"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_Name]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_TransportType]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="DC_TransportType"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_TransportType]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_TransportType]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].Columns[DC_STGInsertDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="DC_STGInsertDate"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_STGInsertDate]" />
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].Columns[DWID]"
+                      cachedDataType="i4"
+                      cachedName="DWID"
+                      externalMetadataColumnId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      lineageId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Match Output].Columns[DWID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_CargoID]"
+                      dataType="i4"
+                      name="DC_CargoID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_Name]"
+                      dataType="wstr"
+                      length="50"
+                      name="DC_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_TransportType]"
+                      dataType="wstr"
+                      length="10"
+                      name="DC_TransportType" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DC_STGInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DC_STGInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWID]"
+                      dataType="i4"
+                      name="DWID" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWInsertDate]"
+                      dataType="dbTimeStamp"
+                      name="DWInsertDate" />
+                    <externalMetadataColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input].ExternalColumns[DWUpdateDate]"
+                      dataType="dbTimeStamp"
+                      name="DWUpdateDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpCargo\DumpCargo Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\DumpCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\DumpCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\DumpCargo Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DimandDumpCargo\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select DWID,[DC_CargoID] from dbo.[DimCargo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select DWID,[DC_CargoID] from dbo.[DimCargo]) [refTable]
+where [refTable].[DC_CargoID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DWID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DC_CargoID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DimandDumpCargo\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.project]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.project]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DimandDumpCargo\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DimandDumpCargo\Lookup.Inputs[Lookup Input].Columns[DC_CargoID]"
+                      cachedDataType="i4"
+                      cachedName="DC_CargoID"
+                      lineageId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output].Columns[DC_CargoID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">DC_CargoID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DimandDumpCargo\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Match Output].Columns[DWID]"
+                      name="DWID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DWID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpCargo\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DimandDumpCargo\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DimandDumpCargo\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DimandDumpCargo.Paths[Data Conversion Output]"
+              endId="Package\DimandDumpCargo\Lookup.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DimandDumpCargo\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DimandDumpCargo.Paths[Lookup Match Output]"
+              endId="Package\DimandDumpCargo\DumpCargo Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DimandDumpCargo\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DimandDumpCargo.Paths[Lookup No Match Output]"
+              endId="Package\DimandDumpCargo\DimCargo Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DimandDumpCargo\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DimandDumpCargo.Paths[OLE DB Source Output]"
+              endId="Package\DimandDumpCargo\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\DimandDumpCargo\Cargo.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\ExecutionLog"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{20E8850D-B99C-4381-B4B7-059D35142C55}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="ExecutionLog"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{839A0F61-53CD-4DA1-A9D1-4F6957352EAB}"
+          SQLTask:SqlStatementSource="update SSISExecutionLog&#xA;set LastExecutionDateTime=getdate()&#xA;where TableName=? and PackageName=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::TableName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::Packagename"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{643C33A3-E321-4310-AD16-8EE928DEEFB3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{839A0F61-53CD-4DA1-A9D1-4F6957352EAB}"
+          SQLTask:SqlStatementSource="UPDATE dim&#xA;SET dim.[DC_Name]=dump.[DC_Name],&#xA;dim.[DC_TransportType]=dump.[DC_TransportType],&#xA;dim.DWUpdateDate=getdate()&#xA;FROM [dbo].[DimCargo] dim&#xA;JOIN [dbo].[DimandDumpCargo] dump ON dim.DWID=dump.DWID" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B65FFFB2-CB1A-43EA-BBB8-501507A2ADEA}"
+      DTS:From="Package\DimandDumpCargo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{85AAE65E-A825-4A5F-9A11-E327B39A8EB5}"
+      DTS:From="Package\Update"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\ExecutionLog" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\DimandDumpCargo"
+          TopLeft="287,110" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Update"
+          TopLeft="312,209" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\ExecutionLog"
+          TopLeft="298,322" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="370.5,152">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="368.5,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,71"
+              Start="0,0"
+              End="0,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DimandDumpCargo">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="107,42"
+          Id="Package\DimandDumpCargo\Cargo"
+          TopLeft="308,44" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DimandDumpCargo\Data Conversion"
+          TopLeft="301,118" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\DimandDumpCargo\Lookup"
+          TopLeft="325,198" />
+        <NodeLayout
+          Size="181,42"
+          Id="Package\DimandDumpCargo\DimCargo Destination"
+          TopLeft="128,289" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\DimandDumpCargo\DumpCargo Destination"
+          TopLeft="466,291" />
+        <EdgeLayout
+          Id="Package\DimandDumpCargo.Paths[OLE DB Source Output]"
+          TopLeft="361.5,86">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17.5,32"
+              Start="0,0"
+              End="17.5,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="4,16" />
+                  <mssgle:LineSegment
+                    End="13.5,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5,16"
+                    Point2="17.5,16"
+                    Point3="17.5,20" />
+                  <mssgle:LineSegment
+                    End="17.5,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpCargo.Paths[Data Conversion Output]"
+          TopLeft="380.25,160">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpCargo.Paths[Lookup No Match Output]"
+          TopLeft="364,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-145.5,49"
+              Start="0,0"
+              End="-145.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.0104712041885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.0104712041885"
+                    Point2="0,20.0104712041885"
+                    Point3="-4,20.0104712041885" />
+                  <mssgle:LineSegment
+                    End="-141.5,20.0104712041885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-141.5,20.0104712041885"
+                    Point2="-145.5,20.0104712041885"
+                    Point3="-145.5,24.0104712041885" />
+                  <mssgle:LineSegment
+                    End="-145.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-128.55638671875,25.0104712041885,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DimandDumpCargo.Paths[Lookup Match Output]"
+          TopLeft="399,240">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="162.5,51"
+              Start="0,0"
+              End="162.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.82722513089" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.82722513089"
+                    Point2="0,20.82722513089"
+                    Point3="4,20.82722513089" />
+                  <mssgle:LineSegment
+                    End="158.5,20.82722513089" />
+                  <mssgle:CubicBezierSegment
+                    Point1="158.5,20.82722513089"
+                    Point2="162.5,20.82722513089"
+                    Point3="162.5,24.82722513089" />
+                  <mssgle:LineSegment
+                    End="162.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="33.05861328125,25.82722513089,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpCargo\Cargo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpCargo\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpCargo\DimCargo Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DimandDumpCargo\DumpCargo Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
